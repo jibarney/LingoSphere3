@@ -1,4 +1,6 @@
 
+import dbObjects.DbResources;
+import dbObjects.UserData;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,12 +10,14 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
 
 public class LingoSphere3 extends javax.swing.JFrame {
     
+    private DbResources db = new DbResources();
     static String logInMsg = "\nWelcome to Lingo Sphere, the language learning "+
         "tool developed by team JTA to facilitate foreign language learning and lesson "+
  "planning.\n\n"+
@@ -42,7 +46,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
         newUserField.setColumns(14);
         newPsswdField.setColumns(14);
         existingUserButton.setSelected(true);
-  //      TeacherPage3 TeacherPage = new TeacherPage3() ;
+        TeacherPage3 TeacherPages = new TeacherPage3() ;
+        QuickTranslation translation = new QuickTranslation();
         
        // Initially, current user area enabled, new user disabled.
         
@@ -55,7 +60,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jTabbedPane2.addTab("Lesson Plan");
         jTabbedPane.addTab("Self Test");
         jTabbedPane.addTab("Graded Test");*/
-     //   jTabbedPane2.addTab("Teacher's Page",TeacherPage);
+        jTabbedPane2.addTab("Teacher's Page",TeacherPages);
+        jTabbedPane2.addTab("Translation", translation);
     }
 
     /**
@@ -100,7 +106,6 @@ public class LingoSphere3 extends javax.swing.JFrame {
         welcomeMsg = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         submitButton = new javax.swing.JButton();
-        TeacherPage = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -449,94 +454,98 @@ public class LingoSphere3 extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Welcome", jPanel5);
 
-        javax.swing.GroupLayout TeacherPageLayout = new javax.swing.GroupLayout(TeacherPage);
-        TeacherPage.setLayout(TeacherPageLayout);
-        TeacherPageLayout.setHorizontalGroup(
-            TeacherPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1340, Short.MAX_VALUE)
-        );
-        TeacherPageLayout.setVerticalGroup(
-            TeacherPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 648, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("Teacher Page", TeacherPage);
-
         getContentPane().add(jTabbedPane2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        boolean validLogin = false;
+        User userFound = new User();
+        UserData dbUser = null;
+
+        if (newUserButton.isSelected())
+        {
+            String newUsername = newUserField.getText() ;
+            String newPsswd = newPsswdField.getText() ;
+            Boolean isTeacher = false;
+            
+            if(String.valueOf(accountType.getSelectedItem()).equalsIgnoreCase("Instructor"))
+                isTeacher = true;
+            
+            if ((newUsername.length() < 5) || (newPsswd.length() < 5))
+            {
+                systemMessages.setText("Password and username must be at least 5 characters");
+            }
+            else
+            {
+                userFound = addUser(userDataFilename) ;
+                systemMessages.setText(userFound.welcomeUser());
+                enablePanel(newUserPanel,false);
+                
+                try{
+                    dbUser = db.createUser(newUsername , newPsswd, isTeacher);
+                }
+                catch(SQLException ex){
+                    System.out.println("e: " + ex);
+                }
+            }
+        }
+        else  // Look for existing user
+        {
+            //userList = getUsers(userDataFilename);
+            //for (User user: userList){
+                try{
+                    dbUser = db.getUser(currentUserField.getText() , currentPsswdField.getText());
+                }
+                catch(SQLException ex){
+                    System.out.println("e: " + ex);
+                }
+                if (dbUser != null)
+                {
+                    validLogin = true;
+                    //userFound = new User(user);
+                }
+                //}
+            if (!validLogin)
+            systemMessages.setText(" Invalid login. Please try again.");
+            else
+            {
+                systemMessages.setText(userFound.welcomeUser());
+                enablePanel(currentUserPanel,false);
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitButtonActionPerformed
+
     private void newUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserButtonActionPerformed
-              enablePanel(currentUserPanel,false);
-              enablePanel(newUserPanel,true);
-           //   newUserFlag = false;
+        enablePanel(currentUserPanel,false);
+        enablePanel(newUserPanel,true);
+        //   newUserFlag = false;
     }//GEN-LAST:event_newUserButtonActionPerformed
 
     private void existingUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_existingUserButtonActionPerformed
-              enablePanel(currentUserPanel,true);
-              enablePanel(newUserPanel,false);
-           //   newUserFlag = false;
+        enablePanel(currentUserPanel,true);
+        enablePanel(newUserPanel,false);
+        //   newUserFlag = false;
     }//GEN-LAST:event_existingUserButtonActionPerformed
-
-    private void currentUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentUserFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_currentUserFieldActionPerformed
 
     private void accountTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accountTypeActionPerformed
 
-    private void newUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newUserFieldActionPerformed
-
     private void newPsswdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPsswdFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newPsswdFieldActionPerformed
 
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-            boolean validLogin = false;
-            User userFound = new User();
-            
-            if (newUserButton.isSelected())
-            {
-                String newUsername = newUserField.getText() ;
-                String newPsswd = newPsswdField.getText() ;
-                if ((newUsername.length() < 5) || (newPsswd.length() < 5))
-                {
-                    systemMessages.setText("Password and username must be at least 5 characters");
-                }
-                else
-                {
-                    userFound = addUser(userDataFilename) ;
-                    systemMessages.setText(userFound.welcomeUser()); 
-                    enablePanel(newUserPanel,false);
-                }
-            }
-            else  // Look for existing user
-            {
-               userList = getUsers(userDataFilename);
-               
-               for (User user: userList){
-               if (user.checkValidUser(currentUserField.getText(),currentPsswdField.getText()))  
-                { 
-                   validLogin = true;
-                   userFound = new User(user);
-                   break;
-                }      
-               }
-               if (!validLogin)
-                   systemMessages.setText(" Invalid login. Please try again or create new account.");
-               else
-               {
-                   systemMessages.setText(userFound.welcomeUser()); 
-                   enablePanel(currentUserPanel,false);
-               }
-           } 
-     
+    private void newUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_submitButtonActionPerformed
+    }//GEN-LAST:event_newUserFieldActionPerformed
+
+    private void currentUserFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentUserFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentUserFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -671,7 +680,6 @@ public class LingoSphere3 extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel TeacherPage;
     private javax.swing.JComboBox accountType;
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JComboBox classNum;

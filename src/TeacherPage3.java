@@ -36,12 +36,11 @@ public class TeacherPage3 extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lingosphere2/LSlogo2Small.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LSlogo2Small.jpg"))); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Vocabulary List Options"));
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Create", "Update", "Delete" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
