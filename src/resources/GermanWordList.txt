@@ -1,0 +1,19 @@
+﻿Avoid using comments with semicolons, and don't start list on the first line.  For some reason, the character
+0xfeff appears at the start of the first line, so it will mess up the first field read.
+
+Numbers: one   :eins
+Numbers: two   :zwei 
+Numbers: three :drei   
+Numbers: four  :vier 
+Numbers: five  :fünf 
+Numbers: six   :sechs 
+Numbers: seven  :sieben 
+Numbers: eight  :acht     
+Numbers: nine   :neun     
+Numbers: ten    :zehn 
+Verbs:   swim   :zum shwimmen  
+Verbs:   sleep  :um schlafen  
+Verbs:   walk   :zu fuß       
+Verbs:   eat    :zu essen     
+Verbs:   laugh  :zu lachen 
+  
