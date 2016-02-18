@@ -1,3 +1,11 @@
+
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -51,6 +59,11 @@ public class QuickTranslation extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTextArea2);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Languages", "EnglishToGerman", "EnglishToSpanish", "GermanToEnglish", "SpanishToEnglish" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectTranslationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,6 +115,61 @@ public class QuickTranslation extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void selectTranslationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectTranslationActionPerformed
+        // TODO add your handling code here:
+        System.out.println("String: " + jComboBox1.getSelectedItem().toString());
+        Client client = Client.create();
+        String url = "http://www.worldlingo.com/S000.1/";
+        String selectedLang = jComboBox1.getSelectedItem().toString();
+        String transLang = "";
+        String srcLang = "";
+        
+        if(selectedLang.equalsIgnoreCase("EnglishToGerman")){
+            srcLang = "en";
+            transLang = "de";
+        }
+        else if(selectedLang.equalsIgnoreCase("EnglishToSpanish")){
+            srcLang = "en";
+            transLang = "es";
+        }
+        else if(selectedLang.equalsIgnoreCase("GermanToEnglish")){
+            srcLang = "de";
+            transLang = "en";
+        }
+        else if(selectedLang.equalsIgnoreCase("SpanishToEnglish")){
+            srcLang = "es";
+            transLang = "en";
+        }
+        else{
+            srcLang = "en";
+            transLang = "de";
+        }
+        
+        try{
+            System.out.println(url);
+            String params = "api?wl_srclang=" + srcLang 
+                        + "&wl_trglang=" + transLang 
+                        + "&wl_password=secret&wl_mimetype=text%2Fhtml" 
+                        + "&wl_data=" + URLEncoder.encode(jTextArea1.getText(), "UTF-8");
+            
+            WebResource webResource = client.resource(url + params);
+            ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+            if(response.getStatus()!=200){
+                System.out.println("http error" + response.getStatus());
+                throw new RuntimeException("HTTP Error: "+ response.getStatus());
+
+            } else {
+                String result = response.getEntity(String.class);
+                result = result.substring(1);
+                jTextArea2.setText(result);
+                System.out.println(result);
+            }
+        }
+        catch(Exception e){
+            System.out.println("urlencode error" + e);
+        }
+    }//GEN-LAST:event_selectTranslationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
