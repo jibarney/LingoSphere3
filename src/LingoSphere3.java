@@ -1,6 +1,7 @@
 
 import dbObjects.DbResources;
 import dbObjects.UserData;
+import java.awt.Color;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,9 +10,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JPanel;
 
 
@@ -31,6 +34,10 @@ public class LingoSphere3 extends javax.swing.JFrame {
     
     String userDataFilename = "userdata.txt" ;
     private ArrayList<User> userList = new ArrayList<>();
+    ArrayList<StudyList> myWordLists ;
+    private StudyList myLesson ;
+    Map.Entry<String,String> currentPair ;
+    int hitCount, missCount ;
     
     public LingoSphere3() {
         initComponents();
@@ -67,6 +74,15 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jTabbedPane.addTab("Graded Test");*/
         jTabbedPane2.addTab("Teacher's Page",TeacherPages);
         jTabbedPane2.addTab("Translation", translation);
+        
+        InputStream is = getClass().getResourceAsStream("resources/GermanWordList.txt");
+        
+        myWordLists = LS_FileIOUtility.readVocabFile(is);
+        for (StudyList thisList: myWordLists) 
+        {
+            reviewListComboBox.addItem( thisList.getListName());
+        }
+        
     }
 
     /**
@@ -120,23 +136,23 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        reviewListComboBox = new javax.swing.JComboBox();
+        startReviewButton = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        correctAnswer = new javax.swing.JLabel();
+        germanWordField = new javax.swing.JLabel();
+        studentTranslation = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        overrideMiss = new javax.swing.JButton();
+        inputTranslation = new javax.swing.JButton();
+        shuffleReset = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        hitCountLabel = new javax.swing.JLabel();
+        missCountLabel = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        finalScore = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -543,19 +559,18 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("and hit 'Start Review'");
 
-        jComboBox1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Numbers", "Verbs", "Animals" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        reviewListComboBox.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        reviewListComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                reviewListComboBoxActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jButton1.setText("Start Review");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        startReviewButton.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        startReviewButton.setText("Start Review");
+        startReviewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                startReviewButtonActionPerformed(evt);
             }
         });
 
@@ -570,12 +585,12 @@ public class LingoSphere3 extends javax.swing.JFrame {
                         .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(reviewListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startReviewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
-        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jComboBox1, jLabel15, jLabel16, jLabel2});
+        jPanel6Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel15, jLabel16, jLabel2, reviewListComboBox, startReviewButton});
 
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,28 +602,28 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reviewListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(startReviewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addGap(25, 25, 25))
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel18.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Correct Word");
-        jLabel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        correctAnswer.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        correctAnswer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        correctAnswer.setText("Correct Word");
+        correctAnswer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel17.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("German Word");
-        jLabel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        germanWordField.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        germanWordField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        germanWordField.setText("German Word");
+        germanWordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
-        jTextField1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("English Word");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        studentTranslation.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        studentTranslation.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        studentTranslation.setText("English Word");
+        studentTranslation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -618,51 +633,51 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(germanWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(correctAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentTranslation, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel17, jLabel18, jTextField1});
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {correctAnswer, germanWordField, studentTranslation});
 
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(germanWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(studentTranslation, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(correctAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel17, jLabel18, jTextField1});
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {correctAnswer, germanWordField, studentTranslation});
 
         jPanel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton2.setText("Override Miss");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        overrideMiss.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        overrideMiss.setText("Override Miss");
+        overrideMiss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                overrideMissActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jButton3.setText("Submit Response");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        inputTranslation.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        inputTranslation.setText("Submit Response");
+        inputTranslation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                inputTranslationActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton4.setText("Shuffle and Reset List");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        shuffleReset.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        shuffleReset.setText("Shuffle and Reset List");
+        shuffleReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                shuffleResetActionPerformed(evt);
             }
         });
 
@@ -673,25 +688,25 @@ public class LingoSphere3 extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(overrideMiss, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shuffleReset, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputTranslation, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel9Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton4});
+        jPanel9Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {overrideMiss, shuffleReset});
 
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputTranslation, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(overrideMiss, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(shuffleReset, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -703,19 +718,19 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel20.setText("Miss Count: ");
 
-        jLabel21.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel21.setText("000");
+        hitCountLabel.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        hitCountLabel.setForeground(new java.awt.Color(0, 153, 51));
+        hitCountLabel.setText("000");
 
-        jLabel22.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel22.setText("000");
+        missCountLabel.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        missCountLabel.setForeground(new java.awt.Color(255, 0, 51));
+        missCountLabel.setText("000");
 
         jLabel24.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel24.setText("Final Score: ");
 
-        jLabel23.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jLabel23.setText("- - - % ");
+        finalScore.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        finalScore.setText("- - - % ");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -730,13 +745,13 @@ public class LingoSphere3 extends javax.swing.JFrame {
                             .addComponent(jLabel20))
                         .addGap(43, 43, 43)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel21)))
+                            .addComponent(missCountLabel)
+                            .addComponent(hitCountLabel)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jLabel24)
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel23)))
+                        .addComponent(finalScore)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -745,14 +760,14 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jLabel21))
+                    .addComponent(hitCountLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel22))
+                    .addComponent(missCountLabel))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(finalScore, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -932,25 +947,77 @@ public class LingoSphere3 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_currentUserFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void startReviewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startReviewButtonActionPerformed
+        String chosenList = reviewListComboBox.getSelectedItem().toString() ;
+        
+        for (StudyList thisList: myWordLists) 
+        {
+           if (chosenList.equals(thisList.getListName())) 
+           {
+               myLesson = thisList; 
+               myLesson.initiateList();
+               initializeStudentReview() ;
+               startReviewButton.setEnabled(false) ;
+           }
+        } 
+    }//GEN-LAST:event_startReviewButtonActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void reviewListComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviewListComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_reviewListComboBoxActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void overrideMissActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_overrideMissActionPerformed
+         if (missCount>0)
+        {
+            missCount--;
+            hitCount++;
+            hitCountLabel.setText(Integer.toString(hitCount)); 
+            missCountLabel.setText(Integer.toString(missCount)); 
+        }
+    }//GEN-LAST:event_overrideMissActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void shuffleResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shuffleResetActionPerformed
+         myLesson.shuffleMap() ;
+        initializeStudentReview() ;
+    }//GEN-LAST:event_shuffleResetActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void inputTranslationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTranslationActionPerformed
+         if (inputTranslation.getText().equals("Submit Response"))
+        {
+             correctAnswer.setText(currentPair.getKey());
+             if (currentPair.getKey().equals( studentTranslation.getText().trim()))
+             {
+                correctAnswer.setForeground(new Color(0x009933));  // Nicer shade of green
+                hitCount++ ;
+                 hitCountLabel.setText(Integer.toString(hitCount));
+             }
+             else
+             {
+                 correctAnswer.setForeground(Color.RED) ;
+                 missCount++ ;
+                 missCountLabel.setText(Integer.toString(missCount));   
+             }
+             inputTranslation.setText("Next Item");
+        }
+        else
+        {
+            inputTranslation.setText("Submit Response");
+            currentPair = myLesson.getNextEntry();
+            if (currentPair == null)
+            {
+                int pct = hitCount*100/(hitCount+missCount) ;
+                finalScore.setText(pct+"%");  
+                inputTranslation.setEnabled(false);
+                startReviewButton.setEnabled(true) ;
+            }
+            else
+            {
+               germanWordField.setText(currentPair.getValue());
+               studentTranslation.setText("");
+               correctAnswer.setText("");
+            } 
+        }
+    }//GEN-LAST:event_inputTranslationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1084,20 +1151,35 @@ public class LingoSphere3 extends javax.swing.JFrame {
           }
     }
     
+     void initializeStudentReview()
+    {
+               currentPair = myLesson.getNextEntry();
+               germanWordField.setText(currentPair.getValue());
+               studentTranslation.setText("");
+               correctAnswer.setText("");
+               hitCount = 0;
+               missCount = 0;
+               inputTranslation.setEnabled(true);
+               hitCountLabel.setText("0");
+               missCountLabel.setText("0");
+               finalScore.setText("---%");   
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea GradeList;
     private javax.swing.JComboBox accountType;
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JComboBox classNum;
+    private javax.swing.JLabel correctAnswer;
     private javax.swing.JTextField currentPsswdField;
     private javax.swing.JTextField currentUserField;
     private javax.swing.JPanel currentUserPanel;
     private javax.swing.JRadioButton existingUserButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel finalScore;
+    private javax.swing.JLabel germanWordField;
+    private javax.swing.JLabel hitCountLabel;
+    private javax.swing.JButton inputTranslation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1106,14 +1188,9 @@ public class LingoSphere3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
@@ -1140,11 +1217,16 @@ public class LingoSphere3 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel missCountLabel;
     private javax.swing.JTextField newPsswdField;
     private javax.swing.JRadioButton newUserButton;
     private javax.swing.JTextField newUserField;
     private javax.swing.JPanel newUserPanel;
+    private javax.swing.JButton overrideMiss;
+    private javax.swing.JComboBox reviewListComboBox;
+    private javax.swing.JButton shuffleReset;
+    private javax.swing.JButton startReviewButton;
+    private javax.swing.JTextField studentTranslation;
     private javax.swing.JButton submitButton;
     private javax.swing.JTextArea systemMessages;
     private javax.swing.JTextArea welcomeMsg;
