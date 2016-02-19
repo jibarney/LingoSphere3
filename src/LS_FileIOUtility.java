@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class LS_FileIOUtility {
@@ -19,7 +20,7 @@ public class LS_FileIOUtility {
         // File file =new File(wordListFile);
         // FileInputStream fis = null ;
         
-         BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+         BufferedReader reader = new BufferedReader(new InputStreamReader(fis,StandardCharsets.UTF_8));
        
           try{ 
             
