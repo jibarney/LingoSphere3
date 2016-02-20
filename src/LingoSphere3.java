@@ -861,7 +861,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         boolean validLogin = false;
-        User userFound = new User();
+       // User userFound = new User();
         UserData dbUser = null;
 
         if (newUserButton.isSelected())
@@ -879,12 +879,14 @@ public class LingoSphere3 extends javax.swing.JFrame {
             }
             else
             {
-                userFound = addUser(userDataFilename) ;
-                systemMessages.setText(userFound.welcomeUser());
+               // userFound = addUser(userDataFilename) ;
+        //        systemMessages.setText(userFound.welcomeUser());
+              
                 enablePanel(newUserPanel,false);
                 
                 try{
                     dbUser = db.createUser(newUsername , newPsswd, isTeacher);
+                    systemMessages.setText(dbUser.welcomeUser());
                 }
                 catch(SQLException ex){
                     System.out.println("e: " + ex);
@@ -911,7 +913,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
             systemMessages.setText(" Invalid login. Please try again.");
             else
             {
-                systemMessages.setText(userFound.welcomeUser());
+              //  systemMessages.setText(userFound.welcomeUser());
+                systemMessages.setText(dbUser.welcomeUser() );
                 enablePanel(currentUserPanel,false);
             }
         }

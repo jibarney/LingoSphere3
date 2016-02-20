@@ -20,6 +20,7 @@ public class UserData {
     {
         
     }
+    
     public int getUserId() {
         return userId;
     }
@@ -51,5 +52,12 @@ public class UserData {
     public void setIsTeacher(boolean isTeacher) {
         this.isTeacher = isTeacher;
     }
-    
+  
+    public String welcomeUser(){
+        
+        String usertype = "STUDENT"; 
+        if (this.isTeacher) usertype = "INSTRUCTOR";
+        return  "   Welcome user "+userName +"!\n"+
+                "   You have "+usertype+" access. " ;
+}
 }
