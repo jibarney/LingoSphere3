@@ -61,6 +61,9 @@ public class LingoSphere3 extends javax.swing.JFrame {
         TeacherPage3 TeacherPages = new TeacherPage3() ;
         QuickTranslation translation = new QuickTranslation();
         
+        // Need to debug executable.  Display error in message window.
+        systemMessages.setText(db.getSQLSetupStatus());
+        
        // Initially, current user area enabled, new user disabled.
         
         Component[] comNU = newUserPanel.getComponents();
@@ -890,6 +893,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 }
                 catch(SQLException ex){
                     System.out.println("e: " + ex);
+                    systemMessages.setText("SQL create user error:"+ex);
                 }
             }
         }
@@ -961,6 +965,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
                myLesson.initiateList();
                initializeStudentReview() ;
                startReviewButton.setEnabled(false) ;
+               
+               
            }
         } 
     }//GEN-LAST:event_startReviewButtonActionPerformed
@@ -1048,7 +1054,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LingoSphere3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

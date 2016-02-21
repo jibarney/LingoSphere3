@@ -24,9 +24,13 @@ public class DbResources {
     private final String password = "dbAdmin1";
     private final String selectQuery = "select * from LSDatabase";
     
+    private String dbSetupMsg ;
+    
     public DbResources()
-    {
+    {     
         try{
+          Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+            
             Properties connectionProps = new Properties();
             connectionProps.put("user", this.userName);
             connectionProps.put("password", this.password);
@@ -36,11 +40,15 @@ public class DbResources {
                    connectionProps);
             
             System.out.println("Connected to database");
+            dbSetupMsg = "Connected to SQL database";
         }
         catch(Exception e){
             System.out.println("Sql error: " + e);
+            dbSetupMsg = "SQL error"+e;
         }
     }
+    
+    public String getSQLSetupStatus() { return dbSetupMsg ;  }
     
     public UserData getUser(String userName, String userPass) throws SQLException {
         
@@ -78,6 +86,7 @@ public class DbResources {
                 }
         }
         catch(SQLException e){
+            
             System.out.println("SQL getUser error: " + e);
         }
         finally{
@@ -116,6 +125,9 @@ public class DbResources {
         }
         catch(SQLException e){
             System.out.println("SQL createUser error: " + e);
+            
+            dbSetupMsg = "SQL create user error :"+e ;
+            
             return null;
         }
         finally{
