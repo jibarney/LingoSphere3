@@ -1,19 +1,415 @@
-﻿Avoid using comments with semicolons, and don't start list on the first line.  For some reason, the character
+Avoid using comments with semicolons, and don't start list on the first line.  For some reason, the character
 0xfeff appears at the start of the first line, so it will mess up the first field read.
 
+
 Numbers: one   :eins
+
 Numbers: two   :zwei 
+
 Numbers: three :drei   
+
 Numbers: four  :vier 
+
 Numbers: five  :fünf 
+
 Numbers: six   :sechs 
+
 Numbers: seven  :sieben 
+
 Numbers: eight  :acht     
+
 Numbers: nine   :neun     
+
 Numbers: ten    :zehn 
-Verbs:   swim   :zum shwimmen  
-Verbs:   sleep  :um schlafen  
-Verbs:   walk   :zu fuß       
-Verbs:   eat    :zu essen     
-Verbs:   laugh  :zu lachen 
+
+Numbers: eleven	:elf
+Numbers: twelve :zwölf
+Numbers: thirteen :dreizehn
+Numbers: fourteen :vierzehn
+Numbers: fifteen :fünfzehn
+Numbers: sixteen :sechzehn
+Numbers: seventeen :siebzehn
+Numbers: eighteen :achtzehn
+Numbers: nineteen :neunzehn
+Numbers: twenty :zwanzig
+Verbs:   swim   :shwimmen  
+
+Verbs:   sleep  :schlafen  
+
+Verbs:   walk   :gehen       
+
+Verbs:   eat    :essen     
+
+Verbs:   laugh  :lachen
+Verbs: be :sein
+Verbs: have :haben
+Verbs: do :tun
+Verbs: say :sagen
+Verbs: go :gehen
+Verbs: can :können
+Verbs: get :bekommen
+Verbs: would :würde
+Verbs: make :machen
+Verbs: know :wissen
+Verbs: will :wird
+Verbs: think :denken
+Verbs: take :nehmen
+Verbs: see :sehen
+Verbs: come :kommen
+Verbs: could :könnte
+Verbs: want :wollen
+Verbs: use :benutzen
+Verbs: find :finden
+Verbs: give :geben
+Verbs: tell :erzählen
+Verbs: work :arbeiten
+Verbs: should :sollte
+Verbs: call :anrufen
+Verbs: try :probieren
+Verbs: ask :fragen
+Verbs: need :brauchen
+Verbs: feel :fűhlen
+Verbs: become :werden
+Verbs: leave :verlassen
+Verbs: mean :bedeuten
+Verbs: keep :behalten
+Verbs: let :lassen
+Verbs: begin :beginnen
+Verbs: seem :scheinen
+Verbs: help :helfen
+Verbs: talk :sprechen
+Verbs: turn :drehen
+Verbs: start :starten
+Verbs: might :könnte
+Verbs: show :zeigen
+Verbs: hear :hören
+Verbs: play :spielen
+Verbs: move :bewegen
+Verbs: like :mögen
+Verbs: live :leben
+Verbs: believe :glauben
+Verbs: hold :halten
+Verbs: bring :bringen
+Verbs: happen :passieren
+Verbs: must :müssen
+Verbs:write :schreiben
+Verbs: provide :bieten
+Verbs: sit :sitzen
+Verbs: stand :stehen
+Verbs: lose :verlieren
+Verbs: pay :bezahlen
+Verbs: meet :treffen
+Verbs: include :enthalten
+Verbs: continue :fortsetzen
+Verbs: set :setzen
+Verbs: learn :lernen
+Verbs: change :verändern
+Verbs: lead :führen
+Verbs: understand :verstehen
+Verbs: watch :ansehen
+Verbs: follow :folgen
+Verbs: stop :stoppen
+Verbs: create :schaffen
+Verbs: speak :sprechen
+Verbs:read :lesen
+Verbs: allow :erlauben
+Verbs: add :hinzufügen
+Verbs: grow :wachsen
+Verbs: open :öffnen
+Verbs: win :gewinnen
+Verbs: offer :anbieten
+Verbs: remember :erinnern
+Verbs: love :lieben
+Verbs: consider :berücksichtigen
+Verbs: appear :erscheinen
+Verbs: buy :kaufen
+Verbs: wait :warten
+Verbs: serve :dienen
+Verbs: die :sterben
+Verbs: send :senden
+Verbs: expect :erwarten
+Verbs: build :bauen
+Verbs: stay :bleiben
+Verbs: fall :fallen
+Verbs: cut :schneiden
+Verbs: reach :erreichen
+Verbs: kill :töten
+Verbs: remain :verblieben 
   
+
+Animals: frog	:Frosch
+Animals: frogspawn :Froschlaich
+Animals: newt   :Wassermolch
+Animals: tadpole :Kaulquappe
+Animals: toad	:Kröte
+Animals: barbel	:Barbe
+Animals: carp	:Karpfen
+Animals: catfish :Wels
+Animals: cod	:Kabeljau
+Animals: crab	:Krebs
+Animals: eel	:Aal
+Animals: goldfish  :Goldfisch
+Animals: haddock  :Schellfisch
+Animals: halibut  :Heilbutt
+Animals: jellyfish :Qualle
+Animals: lobster  :Hummer
+Animals: manatee  :Seekuh
+Animals: perch	:Barsch
+Animals: pike	:Hecht
+Animals: plaice	:Scholle
+Animals: ray	:Rochen
+Animals: salmon	:Lachs
+Animals: sawfish :Sägefisch
+Animals: scallop :Kammmuschel
+Animals: seahorse :Seepferd
+Animals: shark	:Hai
+Animals: shell	:Muschel
+Animals: shrimp	:Garnele
+Animals: squid	:Tintenfisch
+Animals: starfish :Seestern
+Animals: sturgeon :Stör
+Animals: swordfish :Schwertfisch
+Animals: trout :Forelle
+Animals: tuna :Tunfisch
+Animals: ant :Ameise
+Animals: aphid :Blattlaus
+Animals: bee :Biene
+Animals: beetle	:Käfer
+Animals: bumblebee :Hummel
+Animals: caterpillar :Raupe
+Animals: cockroach : Kakerlake
+Animals: dragonfly :Libelle
+Animals: flea :Floh
+Animals: fly :Fliege
+Animals: gadfly	:Stechfliege
+Animals: grasshopper :Grasshüpfer
+Animals: harvestman :Weberknecht
+Animals: ladybug :Marienkäfer
+Animals: larva :Larve
+Animals: louse :Laus
+Animals: maggot	:Made
+Animals: midge :Mücke
+Animals: millipede :Tausendfüßler
+Animals: moth :Motte
+Animals: nymph :Nymphe
+Animals: wasp :Wespe
+Animals: anteater :Ameisenbär
+Animals: antelope :Antilope
+Animals: armadillo :Gürteltier
+Animals: badger	:Dachs
+Animals: bat :Fledermaus
+Animals: bear :Bär
+Animals: beaver	:Biber
+Animals: bullock :Ochse
+Animals: camel :Kamel
+Animals: chimpanzee :Schimpanse
+Animals: dachshund :Dackel
+Animals: deer :Reh
+Animals: dolphin :Delfin
+Animals: elephant :Elefant
+Animals: elk :Elch 
+Animals: fox :Fuchs
+Animals: gazelle :Gazelle
+Animals: gerbil	:Wüstenspringmaus
+Animals: giraffe :Giraffe
+Animals: goat :Ziege
+Animals: grizzly bear :Grizzlybär
+Animals: guinea pig :Meerschweinchen
+Animals: hamster :Hamster
+Animals: hare :Feldhase
+Animals: hedgehog :Igel
+Animals: horse :Pferd
+Animals: hyena :Hyäne
+Animals: lion :Löwe
+Animals: llama :Lama
+Animals: lynx :Luchs
+Animals: mammoth :Mammut
+Animals: marmot	:Murmeltier
+Animals: mink :Nerz
+Animals: mole :Maulwurf
+Animals: mongoose :Mungo
+Animals: mouse :Maus
+Animals: mule :Maultier
+Animals: otter :Fischotter
+Animals: panda :Panda
+Animals: pig, hog :Schwein
+Animals: platypus :Schnabeltier
+Animals: polar bear :Eisbär
+Animals: polecat :Iltis
+Animals: pony :Pony
+Animals: porcupine :Stachelschwein
+Animals: prairie dog :Präriehund
+Animals: puma :Puma
+Animals: racoon	:Waschbär
+Animals: rat :Ratte
+Animals: reindeer :Rentier
+Animals: rhinoceros :Nashorn
+Animals: seal :Seehund
+Animals: sheep :Schaf
+Animals: skunk :Stinktier
+Animals: sloth :Faultier
+Animals: squirrel :Eichhörnchen
+Animals: tiger :Tiger
+Animals: weasel	:Wiesel
+Animals: whale :Wal
+Animals: wolf :Wolf
+Animals: zebra :Zebra
+Family: aunt :Tante
+Family: little brother :kleiner Bruder
+Family: boyfriend :Freund
+Family: bride :Braut
+Family: brother	:Bruder
+Family: cousin (male) :Cousin 
+Family: cousin (female) :Cousine
+Family: dad :Papa
+Family: daughter :Tochter
+Family: father :Vater
+Family: father-in-law :Schwiegervater
+Family: fiancé :Verlobter
+Family: fiancée	:Verlobte
+Family: friend (female)	:Freundin
+Family: friend (male) :Freund
+Family: grandpa :Opa
+Family: godchild :Patenkind
+Family: godfather :Patenonkel
+Family: godmother :Patentante
+Family: grandchild :Enkel
+Family: granddaughter :Enkelin
+Family: grandma :Oma
+Family: grandson :Enkel
+Family: great-grandparents :Urgroßeltern
+Family: groom :Bräutigam
+Family: half-brother :Halbbruder
+Family: husband	:Ehemann
+Family: mother :Mutter
+Family: mother-in-law :Schwiegermutter
+Family: mom :Mama
+Family: nephew :Neffe
+Family: niece :Nichte
+Family: parent :Elternteil
+Family: parents	:Eltern
+Family: sister :Schwester
+Family: son :Sohn
+Family: stepbrother :Stiefbruder
+Family: twin :Zwilling
+Family: twin-brother :Zwillingsbruder
+Family: uncle :Onkel
+Family: wife :Ehefrau
+Occupations: chimney sweep :Schornsteinfeger
+Occupations: model :Modell
+Occupations: actor :Schauspieler
+Occupations: actress :Schauspielerin
+Occupations: astronaut :Astronaut
+Occupations: baker :Bäcker
+Occupations: barber :Friseur
+Occupations: beautician	:Kosmetikerin
+Occupations: biologist :Biologe
+Occupations: bricklayer :Maurer
+Occupations: bus driver	:Busfahrer
+Occupations: butcher :Fleischer
+Occupations: caretaker	:Hausmeister
+Occupations: carpenter :Tischler
+Occupations: chef	:Chefkoch
+Occupations: childcare assistant :Kinderpfleger
+Occupations: coach :Trainer
+Occupations: construction worker :Bauarbeiter
+Occupations: cook :Koch
+Occupations: cosmetician :Kosmetikerin
+Occupations: customer adviser :Kundenberater
+Occupations: dentist :Zahnarzt
+Occupations: doctor :Arzt
+Occupations: electrician :Elektriker
+Occupations: engineer :Ingenieur
+Occupations: explorer :Forscher
+Occupations: farmer :Bauer
+Occupations: fashion designer :Modedesigner
+Occupations: firefighter :Feuerwehrmann
+Occupations: fitness instructor	:Fitnesstrainer
+Occupations: gardener :Gärtner
+Occupations: glazier :Glaser
+Occupations: graphic :Grafiker
+Occupations: hairdresser :Friseur
+Occupations: hairstylist :Friseur
+Occupations: hunter :Jäger
+Occupations: jounalist :Journalist
+Occupations: mechanic :Mechaniker
+Occupations: miner :Bergarbeiter
+Occupations: nurse :Krankenschwester
+Occupations: nursery-school teacher :Kindergärtnerin
+Occupations: painter :Maler
+Occupations: paramedic :Sanitäter
+Occupations: physiotherapist :Physiotherapeut
+Occupations: pilot :Pilot
+Occupations: plumber :Klempner
+Occupations: police officer (male) :Polizist
+Occupations: police officer (female) : Polizistin
+Occupations: roofer :Dachdecker 
+Occupations: secretary :Sekretärin
+Occupations: shepherd :Schäfer
+Occupations: singer (male) :Sänger
+Occupations: singer (female) :Sängerin
+Occupations: social worker :Sozialarbeiter
+Occupations: surgeon :Chirurg
+Occupations: cab driver	:Taxifahrer
+Occupations: teacher (male) :Lehrer
+Occupations: teacher (female) :Lehrerin
+Occupations: tiler :Fliesenleger
+Occupations: tour guide	:Reiseleiter
+Occupations: truck driver :Fernfahrer
+Occupations: undertaker	:Bestattungsunternehmer
+Occupations: veterinarian :Tierarzt
+Occupations: waiter :Kellner
+Occupations: waitress :Kellnerin
+Occupations: zoologist :Zoologe
+Question Words: who :wer
+Question Words: what :was
+Question Words: why :warum
+Question Words: when :wann
+Question Words: where :wo
+Question Words: how :wie
+Question Words: whom :wen
+Question Words: how come :wieso
+Question Words: where from :woher
+Question Words: where to :wohin
+Days of the Week: Monday :Montag
+Days of the Week: Tuesday :Dienstag
+Days of the Week: Wednesday :Mittwoch
+Days of the Week: Thursday :Donnerstag
+Days of the Week: Friday :Freitag
+Days of the Week: Saturday :Samstag
+Days of the Week: Sunday :Sonntag
+Days of the Week: day :Tag
+Days of the Week: morning :Morgen
+Days of the Week: afternoon :Nachmittag
+Days of the Week: evening :Abend
+Days of the Week: night :Nacht
+Days of the Week: today :heute
+Days of the Week: tomorrow :morgen
+Days of the Week: tonight :heute Abend
+Days of the Week: yesterday :gestern
+Days of the Week: last night :gestern Abend
+Days of the Week: week :Woche
+Days of the Week: weekend :Wochenende
+Days of the Week: daily :täglich
+Days of the Week: weekly :wöchentlich
+Months of the Year: January :Januar
+Months of the Year: February :Februar
+Months of the Year: March :März
+Months of the Year: April :April
+Months of the Year: May :Mai
+Months of the Year: June :Juni
+Months of the Year: July :Juli
+Months of the Year: August :August
+Months of the Year: September :September
+Months of the Year: October :Oktober
+Months of the Year: November :November
+Months of the Year: December :Dezember
+Months of the Year: month :Monat
+Months of the Year: year :Jahr
+Months of the Year: monthly :monatlich
+Months of the Year: yearly :jährlich
+Months of the Year: Winter :Winter
+Months of the Year: Spring :Frühling
+Months of the Year: Summer :Sommer
+Months of the Year: Autumn :Herbst
+
