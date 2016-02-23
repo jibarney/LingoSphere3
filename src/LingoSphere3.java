@@ -79,6 +79,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jTabbedPane2.addTab("Teacher's Page",TeacherPages);
         jTabbedPane2.addTab("Translation", translation);
         
+        enablePanel(jPanel9,false);
+        
    /* Read in all lists from the local file "LocalListFile.txt".  If this file
       does not exist, read in "GermanWordList.txt" which contains prebuilt lists
       embedded in the jar file executable.  (Note that embedded resource files must
@@ -997,6 +999,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                initializeStudentReview() ;
                startReviewButton.setEnabled(false) ;
                reviewListComboBox.setEnabled(false);
+             
            }
         } 
     }//GEN-LAST:event_startReviewButtonActionPerformed
@@ -1199,7 +1202,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
                correctAnswer.setText("");
                hitCount = 0;
                missCount = 0;
-               inputTranslation.setEnabled(true);
+               //inputTranslation.setEnabled(true);
+               enablePanel(jPanel9,true);
                hitCountLabel.setText("0");
                missCountLabel.setText("0");
                finalScore.setText("---%");   
