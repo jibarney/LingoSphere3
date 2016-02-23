@@ -1,12 +1,17 @@
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LS_FileIOUtility {
      
@@ -16,6 +21,7 @@ public class LS_FileIOUtility {
         String listName;
         String EnglishWord;
         String GermanWord;
+        String CreatorID;
         
         // File file =new File(wordListFile);
         // FileInputStream fis = null ;
@@ -34,7 +40,9 @@ public class LS_FileIOUtility {
                  listName = (line.substring(0,idx1)).trim();
                  int idx2 = line.indexOf(':',idx1+1);
                  EnglishWord = (line.substring(idx1+1,idx2).trim());
-                 GermanWord = (line.substring(idx2+1)).trim();
+                 int idx3 = line.indexOf(':',idx2+1);
+                 GermanWord = (line.substring(idx2+1,idx3)).trim();
+                 CreatorID = (line.substring(idx3+1)).trim();
                 
                 /* Add the English-Germain word pair to the proper list */
                 addWordPair(allWordLists,listName, EnglishWord, GermanWord);
@@ -47,11 +55,38 @@ public class LS_FileIOUtility {
           catch (Exception ex){
               ex.printStackTrace() ;
           }
-          
-    
-        
         return allWordLists;
     }
+    
+    /* List file repository data should be deleted and rewritten whenever new set of lists is saved */
+    
+    public static void writeUpdatedListFile(File myfile, ArrayList<StudyList> newWordLists)
+    {
+    		
+        try{ 
+              FileInputStream fis = new FileInputStream(myfile.getName()) ;
+              FileWriter fw = new FileWriter(myfile.getName(),false);  // This should overwrite rather than append
+    	      BufferedWriter writer = new BufferedWriter(fw);
+              
+              for (StudyList thisList: newWordLists) 
+              {
+                   Map<String,String> wordMap = thisList.getMapping() ; 
+                   for(Map.Entry<String, String> entry : wordMap.entrySet())
+                   { 
+                       writer.write(thisList.getListName()+" :"+entry.getKey()+" :"+entry.getValue()+": GuestID"+'\n');
+                   }
+              }
+    	      writer.close();
+        }
+        catch(IOException e)
+           {
+               e.printStackTrace() ;
+           }
+        
+      
+        return ;
+    }
+
     
  /* After reading the list name, English word, and German word from the file, the data is stored in a StudyList, which consists of a
     String filename and a HashMap containing all pairs.

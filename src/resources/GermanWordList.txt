@@ -1,415 +1,394 @@
-Avoid using comments with semicolons, and don't start list on the first line.  For some reason, the character
-0xfeff appears at the start of the first line, so it will mess up the first field read.
-
-
-Numbers: one   :eins
-
-Numbers: two   :zwei 
-
-Numbers: three :drei   
-
-Numbers: four  :vier 
-
-Numbers: five  :fünf 
-
-Numbers: six   :sechs 
-
-Numbers: seven  :sieben 
-
-Numbers: eight  :acht     
-
-Numbers: nine   :neun     
-
-Numbers: ten    :zehn 
-
-Numbers: eleven	:elf
-Numbers: twelve :zwölf
-Numbers: thirteen :dreizehn
-Numbers: fourteen :vierzehn
-Numbers: fifteen :fünfzehn
-Numbers: sixteen :sechzehn
-Numbers: seventeen :siebzehn
-Numbers: eighteen :achtzehn
-Numbers: nineteen :neunzehn
-Numbers: twenty :zwanzig
-Verbs:   swim   :shwimmen  
-
-Verbs:   sleep  :schlafen  
-
-Verbs:   walk   :gehen       
-
-Verbs:   eat    :essen     
-
-Verbs:   laugh  :lachen
-Verbs: be :sein
-Verbs: have :haben
-Verbs: do :tun
-Verbs: say :sagen
-Verbs: go :gehen
-Verbs: can :können
-Verbs: get :bekommen
-Verbs: would :würde
-Verbs: make :machen
-Verbs: know :wissen
-Verbs: will :wird
-Verbs: think :denken
-Verbs: take :nehmen
-Verbs: see :sehen
-Verbs: come :kommen
-Verbs: could :könnte
-Verbs: want :wollen
-Verbs: use :benutzen
-Verbs: find :finden
-Verbs: give :geben
-Verbs: tell :erzählen
-Verbs: work :arbeiten
-Verbs: should :sollte
-Verbs: call :anrufen
-Verbs: try :probieren
-Verbs: ask :fragen
-Verbs: need :brauchen
-Verbs: feel :fűhlen
-Verbs: become :werden
-Verbs: leave :verlassen
-Verbs: mean :bedeuten
-Verbs: keep :behalten
-Verbs: let :lassen
-Verbs: begin :beginnen
-Verbs: seem :scheinen
-Verbs: help :helfen
-Verbs: talk :sprechen
-Verbs: turn :drehen
-Verbs: start :starten
-Verbs: might :könnte
-Verbs: show :zeigen
-Verbs: hear :hören
-Verbs: play :spielen
-Verbs: move :bewegen
-Verbs: like :mögen
-Verbs: live :leben
-Verbs: believe :glauben
-Verbs: hold :halten
-Verbs: bring :bringen
-Verbs: happen :passieren
-Verbs: must :müssen
-Verbs:write :schreiben
-Verbs: provide :bieten
-Verbs: sit :sitzen
-Verbs: stand :stehen
-Verbs: lose :verlieren
-Verbs: pay :bezahlen
-Verbs: meet :treffen
-Verbs: include :enthalten
-Verbs: continue :fortsetzen
-Verbs: set :setzen
-Verbs: learn :lernen
-Verbs: change :verändern
-Verbs: lead :führen
-Verbs: understand :verstehen
-Verbs: watch :ansehen
-Verbs: follow :folgen
-Verbs: stop :stoppen
-Verbs: create :schaffen
-Verbs: speak :sprechen
-Verbs:read :lesen
-Verbs: allow :erlauben
-Verbs: add :hinzufügen
-Verbs: grow :wachsen
-Verbs: open :öffnen
-Verbs: win :gewinnen
-Verbs: offer :anbieten
-Verbs: remember :erinnern
-Verbs: love :lieben
-Verbs: consider :berücksichtigen
-Verbs: appear :erscheinen
-Verbs: buy :kaufen
-Verbs: wait :warten
-Verbs: serve :dienen
-Verbs: die :sterben
-Verbs: send :senden
-Verbs: expect :erwarten
-Verbs: build :bauen
-Verbs: stay :bleiben
-Verbs: fall :fallen
-Verbs: cut :schneiden
-Verbs: reach :erreichen
-Verbs: kill :töten
-Verbs: remain :verblieben 
-  
-
-Animals: frog	:Frosch
-Animals: frogspawn :Froschlaich
-Animals: newt   :Wassermolch
-Animals: tadpole :Kaulquappe
-Animals: toad	:Kröte
-Animals: barbel	:Barbe
-Animals: carp	:Karpfen
-Animals: catfish :Wels
-Animals: cod	:Kabeljau
-Animals: crab	:Krebs
-Animals: eel	:Aal
-Animals: goldfish  :Goldfisch
-Animals: haddock  :Schellfisch
-Animals: halibut  :Heilbutt
-Animals: jellyfish :Qualle
-Animals: lobster  :Hummer
-Animals: manatee  :Seekuh
-Animals: perch	:Barsch
-Animals: pike	:Hecht
-Animals: plaice	:Scholle
-Animals: ray	:Rochen
-Animals: salmon	:Lachs
-Animals: sawfish :Sägefisch
-Animals: scallop :Kammmuschel
-Animals: seahorse :Seepferd
-Animals: shark	:Hai
-Animals: shell	:Muschel
-Animals: shrimp	:Garnele
-Animals: squid	:Tintenfisch
-Animals: starfish :Seestern
-Animals: sturgeon :Stör
-Animals: swordfish :Schwertfisch
-Animals: trout :Forelle
-Animals: tuna :Tunfisch
-Animals: ant :Ameise
-Animals: aphid :Blattlaus
-Animals: bee :Biene
-Animals: beetle	:Käfer
-Animals: bumblebee :Hummel
-Animals: caterpillar :Raupe
-Animals: cockroach : Kakerlake
-Animals: dragonfly :Libelle
-Animals: flea :Floh
-Animals: fly :Fliege
-Animals: gadfly	:Stechfliege
-Animals: grasshopper :Grasshüpfer
-Animals: harvestman :Weberknecht
-Animals: ladybug :Marienkäfer
-Animals: larva :Larve
-Animals: louse :Laus
-Animals: maggot	:Made
-Animals: midge :Mücke
-Animals: millipede :Tausendfüßler
-Animals: moth :Motte
-Animals: nymph :Nymphe
-Animals: wasp :Wespe
-Animals: anteater :Ameisenbär
-Animals: antelope :Antilope
-Animals: armadillo :Gürteltier
-Animals: badger	:Dachs
-Animals: bat :Fledermaus
-Animals: bear :Bär
-Animals: beaver	:Biber
-Animals: bullock :Ochse
-Animals: camel :Kamel
-Animals: chimpanzee :Schimpanse
-Animals: dachshund :Dackel
-Animals: deer :Reh
-Animals: dolphin :Delfin
-Animals: elephant :Elefant
-Animals: elk :Elch 
-Animals: fox :Fuchs
-Animals: gazelle :Gazelle
-Animals: gerbil	:Wüstenspringmaus
-Animals: giraffe :Giraffe
-Animals: goat :Ziege
-Animals: grizzly bear :Grizzlybär
-Animals: guinea pig :Meerschweinchen
-Animals: hamster :Hamster
-Animals: hare :Feldhase
-Animals: hedgehog :Igel
-Animals: horse :Pferd
-Animals: hyena :Hyäne
-Animals: lion :Löwe
-Animals: llama :Lama
-Animals: lynx :Luchs
-Animals: mammoth :Mammut
-Animals: marmot	:Murmeltier
-Animals: mink :Nerz
-Animals: mole :Maulwurf
-Animals: mongoose :Mungo
-Animals: mouse :Maus
-Animals: mule :Maultier
-Animals: otter :Fischotter
-Animals: panda :Panda
-Animals: pig, hog :Schwein
-Animals: platypus :Schnabeltier
-Animals: polar bear :Eisbär
-Animals: polecat :Iltis
-Animals: pony :Pony
-Animals: porcupine :Stachelschwein
-Animals: prairie dog :Präriehund
-Animals: puma :Puma
-Animals: racoon	:Waschbär
-Animals: rat :Ratte
-Animals: reindeer :Rentier
-Animals: rhinoceros :Nashorn
-Animals: seal :Seehund
-Animals: sheep :Schaf
-Animals: skunk :Stinktier
-Animals: sloth :Faultier
-Animals: squirrel :Eichhörnchen
-Animals: tiger :Tiger
-Animals: weasel	:Wiesel
-Animals: whale :Wal
-Animals: wolf :Wolf
-Animals: zebra :Zebra
-Family: aunt :Tante
-Family: little brother :kleiner Bruder
-Family: boyfriend :Freund
-Family: bride :Braut
-Family: brother	:Bruder
-Family: cousin (male) :Cousin 
-Family: cousin (female) :Cousine
-Family: dad :Papa
-Family: daughter :Tochter
-Family: father :Vater
-Family: father-in-law :Schwiegervater
-Family: fiancé :Verlobter
-Family: fiancée	:Verlobte
-Family: friend (female)	:Freundin
-Family: friend (male) :Freund
-Family: grandpa :Opa
-Family: godchild :Patenkind
-Family: godfather :Patenonkel
-Family: godmother :Patentante
-Family: grandchild :Enkel
-Family: granddaughter :Enkelin
-Family: grandma :Oma
-Family: grandson :Enkel
-Family: great-grandparents :Urgroßeltern
-Family: groom :Bräutigam
-Family: half-brother :Halbbruder
-Family: husband	:Ehemann
-Family: mother :Mutter
-Family: mother-in-law :Schwiegermutter
-Family: mom :Mama
-Family: nephew :Neffe
-Family: niece :Nichte
-Family: parent :Elternteil
-Family: parents	:Eltern
-Family: sister :Schwester
-Family: son :Sohn
-Family: stepbrother :Stiefbruder
-Family: twin :Zwilling
-Family: twin-brother :Zwillingsbruder
-Family: uncle :Onkel
-Family: wife :Ehefrau
-Occupations: chimney sweep :Schornsteinfeger
-Occupations: model :Modell
-Occupations: actor :Schauspieler
-Occupations: actress :Schauspielerin
-Occupations: astronaut :Astronaut
-Occupations: baker :Bäcker
-Occupations: barber :Friseur
-Occupations: beautician	:Kosmetikerin
-Occupations: biologist :Biologe
-Occupations: bricklayer :Maurer
-Occupations: bus driver	:Busfahrer
-Occupations: butcher :Fleischer
-Occupations: caretaker	:Hausmeister
-Occupations: carpenter :Tischler
-Occupations: chef	:Chefkoch
-Occupations: childcare assistant :Kinderpfleger
-Occupations: coach :Trainer
-Occupations: construction worker :Bauarbeiter
-Occupations: cook :Koch
-Occupations: cosmetician :Kosmetikerin
-Occupations: customer adviser :Kundenberater
-Occupations: dentist :Zahnarzt
-Occupations: doctor :Arzt
-Occupations: electrician :Elektriker
-Occupations: engineer :Ingenieur
-Occupations: explorer :Forscher
-Occupations: farmer :Bauer
-Occupations: fashion designer :Modedesigner
-Occupations: firefighter :Feuerwehrmann
-Occupations: fitness instructor	:Fitnesstrainer
-Occupations: gardener :Gärtner
-Occupations: glazier :Glaser
-Occupations: graphic :Grafiker
-Occupations: hairdresser :Friseur
-Occupations: hairstylist :Friseur
-Occupations: hunter :Jäger
-Occupations: jounalist :Journalist
-Occupations: mechanic :Mechaniker
-Occupations: miner :Bergarbeiter
-Occupations: nurse :Krankenschwester
-Occupations: nursery-school teacher :Kindergärtnerin
-Occupations: painter :Maler
-Occupations: paramedic :Sanitäter
-Occupations: physiotherapist :Physiotherapeut
-Occupations: pilot :Pilot
-Occupations: plumber :Klempner
-Occupations: police officer (male) :Polizist
-Occupations: police officer (female) : Polizistin
-Occupations: roofer :Dachdecker 
-Occupations: secretary :Sekretärin
-Occupations: shepherd :Schäfer
-Occupations: singer (male) :Sänger
-Occupations: singer (female) :Sängerin
-Occupations: social worker :Sozialarbeiter
-Occupations: surgeon :Chirurg
-Occupations: cab driver	:Taxifahrer
-Occupations: teacher (male) :Lehrer
-Occupations: teacher (female) :Lehrerin
-Occupations: tiler :Fliesenleger
-Occupations: tour guide	:Reiseleiter
-Occupations: truck driver :Fernfahrer
-Occupations: undertaker	:Bestattungsunternehmer
-Occupations: veterinarian :Tierarzt
-Occupations: waiter :Kellner
-Occupations: waitress :Kellnerin
-Occupations: zoologist :Zoologe
-Question Words: who :wer
-Question Words: what :was
-Question Words: why :warum
-Question Words: when :wann
-Question Words: where :wo
-Question Words: how :wie
-Question Words: whom :wen
-Question Words: how come :wieso
-Question Words: where from :woher
-Question Words: where to :wohin
-Days of the Week: Monday :Montag
-Days of the Week: Tuesday :Dienstag
-Days of the Week: Wednesday :Mittwoch
-Days of the Week: Thursday :Donnerstag
-Days of the Week: Friday :Freitag
-Days of the Week: Saturday :Samstag
-Days of the Week: Sunday :Sonntag
-Days of the Week: day :Tag
-Days of the Week: morning :Morgen
-Days of the Week: afternoon :Nachmittag
-Days of the Week: evening :Abend
-Days of the Week: night :Nacht
-Days of the Week: today :heute
-Days of the Week: tomorrow :morgen
-Days of the Week: tonight :heute Abend
-Days of the Week: yesterday :gestern
-Days of the Week: last night :gestern Abend
-Days of the Week: week :Woche
-Days of the Week: weekend :Wochenende
-Days of the Week: daily :täglich
-Days of the Week: weekly :wöchentlich
-Months of the Year: January :Januar
-Months of the Year: February :Februar
-Months of the Year: March :März
-Months of the Year: April :April
-Months of the Year: May :Mai
-Months of the Year: June :Juni
-Months of the Year: July :Juli
-Months of the Year: August :August
-Months of the Year: September :September
-Months of the Year: October :Oktober
-Months of the Year: November :November
-Months of the Year: December :Dezember
-Months of the Year: month :Monat
-Months of the Year: year :Jahr
-Months of the Year: monthly :monatlich
-Months of the Year: yearly :jährlich
-Months of the Year: Winter :Winter
-Months of the Year: Spring :Frühling
-Months of the Year: Summer :Sommer
-Months of the Year: Autumn :Herbst
-
+Numbers :nine :neun: GuestID
+Numbers :fifteen :fünfzehn: GuestID
+Numbers :six :sechs: GuestID
+Numbers :nineteen :neunzehn: GuestID
+Numbers :one :eins: GuestID
+Numbers :eighteen :achtzehn: GuestID
+Numbers :seven :sieben: GuestID
+Numbers :two :zwei: GuestID
+Numbers :three :drei: GuestID
+Numbers :thirteen :dreizehn: GuestID
+Numbers :eight :acht: GuestID
+Numbers :fourteen :vierzehn: GuestID
+Numbers :four :vier: GuestID
+Numbers :sixteen :sechzehn: GuestID
+Numbers :seventeen :siebzehn: GuestID
+Numbers :twelve :zwölf: GuestID
+Numbers :eleven :elf: GuestID
+Numbers :ten :zehn: GuestID
+Numbers :five :fünf: GuestID
+Numbers :twenty :zwanzig: GuestID
+Verbs :play :spielen: GuestID
+Verbs :reach :erreichen: GuestID
+Verbs :bring :bringen: GuestID
+Verbs :offer :anbieten: GuestID
+Verbs :would :würde: GuestID
+Verbs :let :lassen: GuestID
+Verbs :write :schreiben: GuestID
+Verbs :give :geben: GuestID
+Verbs :happen :passieren: GuestID
+Verbs :grow :wachsen: GuestID
+Verbs :work :arbeiten: GuestID
+Verbs :remain :verblieben: GuestID
+Verbs :want :wollen: GuestID
+Verbs :lose :verlieren: GuestID
+Verbs :understand :verstehen: GuestID
+Verbs :come :kommen: GuestID
+Verbs :provide :bieten: GuestID
+Verbs :stop :stoppen: GuestID
+Verbs :must :müssen: GuestID
+Verbs :begin :beginnen: GuestID
+Verbs :become :werden: GuestID
+Verbs :love :lieben: GuestID
+Verbs :wait :warten: GuestID
+Verbs :be :sein: GuestID
+Verbs :cut :schneiden: GuestID
+Verbs :turn :drehen: GuestID
+Verbs :believe :glauben: GuestID
+Verbs :seem :scheinen: GuestID
+Verbs :sleep :schlafen: GuestID
+Verbs :remember :erinnern: GuestID
+Verbs :see :sehen: GuestID
+Verbs :fall :fallen: GuestID
+Verbs :get :bekommen: GuestID
+Verbs :have :haben: GuestID
+Verbs :eat :essen: GuestID
+Verbs :speak :sprechen: GuestID
+Verbs :stand :stehen: GuestID
+Verbs :think :denken: GuestID
+Verbs :include :enthalten: GuestID
+Verbs :set :setzen: GuestID
+Verbs :learn :lernen: GuestID
+Verbs :could :könnte: GuestID
+Verbs :change :verändern: GuestID
+Verbs :kill :töten: GuestID
+Verbs :lead :führen: GuestID
+Verbs :stay :bleiben: GuestID
+Verbs :call :anrufen: GuestID
+Verbs :help :helfen: GuestID
+Verbs :appear :erscheinen: GuestID
+Verbs :expect :erwarten: GuestID
+Verbs :meet :treffen: GuestID
+Verbs :watch :ansehen: GuestID
+Verbs :ask :fragen: GuestID
+Verbs :open :öffnen: GuestID
+Verbs :die :sterben: GuestID
+Verbs :use :benutzen: GuestID
+Verbs :tell :erzählen: GuestID
+Verbs :buy :kaufen: GuestID
+Verbs :feel :fűhlen: GuestID
+Verbs :do :tun: GuestID
+Verbs :serve :dienen: GuestID
+Verbs :hold :halten: GuestID
+Verbs :find :finden: GuestID
+Verbs :leave :verlassen: GuestID
+Verbs :continue :fortsetzen: GuestID
+Verbs :should :sollte: GuestID
+Verbs :create :schaffen: GuestID
+Verbs :talk :sprechen: GuestID
+Verbs :consider :berücksichtigen: GuestID
+Verbs :laugh :lachen: GuestID
+Verbs :add :hinzufügen: GuestID
+Verbs :read :lesen: GuestID
+Verbs :need :brauchen: GuestID
+Verbs :like :mögen: GuestID
+Verbs :might :könnte: GuestID
+Verbs :pay :bezahlen: GuestID
+Verbs :take :nehmen: GuestID
+Verbs :keep :behalten: GuestID
+Verbs :know :wissen: GuestID
+Verbs :try :probieren: GuestID
+Verbs :send :senden: GuestID
+Verbs :swim :shwimmen: GuestID
+Verbs :allow :erlauben: GuestID
+Verbs :show :zeigen: GuestID
+Verbs :can :können: GuestID
+Verbs :make :machen: GuestID
+Verbs :win :gewinnen: GuestID
+Verbs :hear :hören: GuestID
+Verbs :live :leben: GuestID
+Verbs :sit :sitzen: GuestID
+Verbs :move :bewegen: GuestID
+Verbs :will :wird: GuestID
+Verbs :go :gehen: GuestID
+Verbs :start :starten: GuestID
+Verbs :say :sagen: GuestID
+Verbs :follow :folgen: GuestID
+Verbs :build :bauen: GuestID
+Verbs :mean :bedeuten: GuestID
+Verbs :walk :gehen: GuestID
+Animals :louse :Laus: GuestID
+Animals :reindeer :Rentier: GuestID
+Animals :dachshund :Dackel: GuestID
+Animals :ladybug :Marienkäfer: GuestID
+Animals :catfish :Wels: GuestID
+Animals :llama :Lama: GuestID
+Animals :mule :Maultier: GuestID
+Animals :scallop :Kammmuschel: GuestID
+Animals :bat :Fledermaus: GuestID
+Animals :camel :Kamel: GuestID
+Animals :rhinoceros :Nashorn: GuestID
+Animals :larva :Larve: GuestID
+Animals :midge :Mücke: GuestID
+Animals :perch :Barsch: GuestID
+Animals :skunk :Stinktier: GuestID
+Animals :prairie dog :Präriehund: GuestID
+Animals :gadfly :Stechfliege: GuestID
+Animals :rat :Ratte: GuestID
+Animals :lynx :Luchs: GuestID
+Animals :hamster :Hamster: GuestID
+Animals :pike :Hecht: GuestID
+Animals :ray :Rochen: GuestID
+Animals :goat :Ziege: GuestID
+Animals :tiger :Tiger: GuestID
+Animals :lion :Löwe: GuestID
+Animals :horse :Pferd: GuestID
+Animals :carp :Karpfen: GuestID
+Animals :squirrel :Eichhörnchen: GuestID
+Animals :hedgehog :Igel: GuestID
+Animals :giraffe :Giraffe: GuestID
+Animals :nymph :Nymphe: GuestID
+Animals :bumblebee :Hummel: GuestID
+Animals :pony :Pony: GuestID
+Animals :tadpole :Kaulquappe: GuestID
+Animals :jellyfish :Qualle: GuestID
+Animals :gazelle :Gazelle: GuestID
+Animals :otter :Fischotter: GuestID
+Animals :pig, hog :Schwein: GuestID
+Animals :caterpillar :Raupe: GuestID
+Animals :barbel :Barbe: GuestID
+Animals :chimpanzee :Schimpanse: GuestID
+Animals :polecat :Iltis: GuestID
+Animals :porcupine :Stachelschwein: GuestID
+Animals :harvestman :Weberknecht: GuestID
+Animals :shark :Hai: GuestID
+Animals :platypus :Schnabeltier: GuestID
+Animals :millipede :Tausendfüßler: GuestID
+Animals :wolf :Wolf: GuestID
+Animals :grasshopper :Grasshüpfer: GuestID
+Animals :mink :Nerz: GuestID
+Animals :sturgeon :Stör: GuestID
+Animals :puma :Puma: GuestID
+Animals :sawfish :Sägefisch: GuestID
+Animals :fly :Fliege: GuestID
+Animals :marmot :Murmeltier: GuestID
+Animals :cod :Kabeljau: GuestID
+Animals :aphid :Blattlaus: GuestID
+Animals :haddock :Schellfisch: GuestID
+Animals :guinea pig :Meerschweinchen: GuestID
+Animals :panda :Panda: GuestID
+Animals :bee :Biene: GuestID
+Animals :trout :Forelle: GuestID
+Animals :wasp :Wespe: GuestID
+Animals :anteater :Ameisenbär: GuestID
+Animals :mouse :Maus: GuestID
+Animals :frog :Frosch: GuestID
+Animals :whale :Wal: GuestID
+Animals :armadillo :Gürteltier: GuestID
+Animals :bear :Bär: GuestID
+Animals :beaver :Biber: GuestID
+Animals :seahorse :Seepferd: GuestID
+Animals :dolphin :Delfin: GuestID
+Animals :swordfish :Schwertfisch: GuestID
+Animals :manatee :Seekuh: GuestID
+Animals :moth :Motte: GuestID
+Animals :elk :Elch: GuestID
+Animals :lobster :Hummer: GuestID
+Animals :salmon :Lachs: GuestID
+Animals :mole :Maulwurf: GuestID
+Animals :sloth :Faultier: GuestID
+Animals :mammoth :Mammut: GuestID
+Animals :shell :Muschel: GuestID
+Animals :gerbil :Wüstenspringmaus: GuestID
+Animals :plaice :Scholle: GuestID
+Animals :halibut :Heilbutt: GuestID
+Animals :squid :Tintenfisch: GuestID
+Animals :elephant :Elefant: GuestID
+Animals :deer :Reh: GuestID
+Animals :tuna :Tunfisch: GuestID
+Animals :shrimp :Garnele: GuestID
+Animals :mongoose :Mungo: GuestID
+Animals :seal :Seehund: GuestID
+Animals :bullock :Ochse: GuestID
+Animals :eel :Aal: GuestID
+Animals :flea :Floh: GuestID
+Animals :fox :Fuchs: GuestID
+Animals :dragonfly :Libelle: GuestID
+Animals :goldfish :Goldfisch: GuestID
+Animals :beetle :Käfer: GuestID
+Animals :polar bear :Eisbär: GuestID
+Animals :hyena :Hyäne: GuestID
+Animals :starfish :Seestern: GuestID
+Animals :hare :Feldhase: GuestID
+Animals :maggot :Made: GuestID
+Animals :sheep :Schaf: GuestID
+Animals :grizzly bear :Grizzlybär: GuestID
+Animals :zebra :Zebra: GuestID
+Animals :antelope :Antilope: GuestID
+Animals :ant :Ameise: GuestID
+Animals :cockroach :Kakerlake: GuestID
+Animals :newt :Wassermolch: GuestID
+Animals :toad :Kröte: GuestID
+Animals :weasel :Wiesel: GuestID
+Animals :badger :Dachs: GuestID
+Animals :racoon :Waschbär: GuestID
+Animals :frogspawn :Froschlaich: GuestID
+Animals :crab :Krebs: GuestID
+Family :bride :Braut: GuestID
+Family :father-in-law :Schwiegervater: GuestID
+Family :parent :Elternteil: GuestID
+Family :half-brother :Halbbruder: GuestID
+Family :boyfriend :Freund: GuestID
+Family :dad :Papa: GuestID
+Family :father :Vater: GuestID
+Family :uncle :Onkel: GuestID
+Family :cousin (female) :Cousine: GuestID
+Family :grandpa :Opa: GuestID
+Family :husband :Ehemann: GuestID
+Family :mom :Mama: GuestID
+Family :friend (female) :Freundin: GuestID
+Family :mother :Mutter: GuestID
+Family :mother-in-law :Schwiegermutter: GuestID
+Family :godmother :Patentante: GuestID
+Family :niece :Nichte: GuestID
+Family :son :Sohn: GuestID
+Family :grandma :Oma: GuestID
+Family :fiancé :Verlobter: GuestID
+Family :godchild :Patenkind: GuestID
+Family :aunt :Tante: GuestID
+Family :nephew :Neffe: GuestID
+Family :cousin (male) :Cousin: GuestID
+Family :little brother :kleiner Bruder: GuestID
+Family :grandchild :Enkel: GuestID
+Family :sister :Schwester: GuestID
+Family :twin :Zwilling: GuestID
+Family :groom :Bräutigam: GuestID
+Family :grandson :Enkel: GuestID
+Family :wife :Ehefrau: GuestID
+Family :godfather :Patenonkel: GuestID
+Family :granddaughter :Enkelin: GuestID
+Family :stepbrother :Stiefbruder: GuestID
+Family :great-grandparents :Urgroßeltern: GuestID
+Family :twin-brother :Zwillingsbruder: GuestID
+Family :brother :Bruder: GuestID
+Family :daughter :Tochter: GuestID
+Family :fiancée :Verlobte: GuestID
+Family :friend (male) :Freund: GuestID
+Family :parents :Eltern: GuestID
+Occupations :bricklayer :Maurer: GuestID
+Occupations :electrician :Elektriker: GuestID
+Occupations :cosmetician :Kosmetikerin: GuestID
+Occupations :surgeon :Chirurg: GuestID
+Occupations :mechanic :Mechaniker: GuestID
+Occupations :butcher :Fleischer: GuestID
+Occupations :customer adviser :Kundenberater: GuestID
+Occupations :zoologist :Zoologe: GuestID
+Occupations :carpenter :Tischler: GuestID
+Occupations :police officer (female) :Polizistin: GuestID
+Occupations :childcare assistant :Kinderpfleger: GuestID
+Occupations :tiler :Fliesenleger: GuestID
+Occupations :astronaut :Astronaut: GuestID
+Occupations :fashion designer :Modedesigner: GuestID
+Occupations :firefighter :Feuerwehrmann: GuestID
+Occupations :social worker :Sozialarbeiter: GuestID
+Occupations :model :Modell: GuestID
+Occupations :hunter :Jäger: GuestID
+Occupations :physiotherapist :Physiotherapeut: GuestID
+Occupations :nursery-school teacher :Kindergärtnerin: GuestID
+Occupations :actress :Schauspielerin: GuestID
+Occupations :bus driver :Busfahrer: GuestID
+Occupations :baker :Bäcker: GuestID
+Occupations :gardener :Gärtner: GuestID
+Occupations :dentist :Zahnarzt: GuestID
+Occupations :undertaker :Bestattungsunternehmer: GuestID
+Occupations :painter :Maler: GuestID
+Occupations :biologist :Biologe: GuestID
+Occupations :explorer :Forscher: GuestID
+Occupations :coach :Trainer: GuestID
+Occupations :singer (male) :Sänger: GuestID
+Occupations :fitness instructor :Fitnesstrainer: GuestID
+Occupations :glazier :Glaser: GuestID
+Occupations :teacher (female) :Lehrerin: GuestID
+Occupations :shepherd :Schäfer: GuestID
+Occupations :miner :Bergarbeiter: GuestID
+Occupations :police officer (male) :Polizist: GuestID
+Occupations :jounalist :Journalist: GuestID
+Occupations :hairdresser :Friseur: GuestID
+Occupations :plumber :Klempner: GuestID
+Occupations :secretary :Sekretärin: GuestID
+Occupations :tour guide :Reiseleiter: GuestID
+Occupations :teacher (male) :Lehrer: GuestID
+Occupations :truck driver :Fernfahrer: GuestID
+Occupations :nurse :Krankenschwester: GuestID
+Occupations :roofer :Dachdecker: GuestID
+Occupations :barber :Friseur: GuestID
+Occupations :graphic :Grafiker: GuestID
+Occupations :caretaker :Hausmeister: GuestID
+Occupations :pilot :Pilot: GuestID
+Occupations :singer (female) :Sängerin: GuestID
+Occupations :chimney sweep :Schornsteinfeger: GuestID
+Occupations :waitress :Kellnerin: GuestID
+Occupations :cook :Koch: GuestID
+Occupations :chef :Chefkoch: GuestID
+Occupations :construction worker :Bauarbeiter: GuestID
+Occupations :engineer :Ingenieur: GuestID
+Occupations :beautician :Kosmetikerin: GuestID
+Occupations :cab driver :Taxifahrer: GuestID
+Occupations :actor :Schauspieler: GuestID
+Occupations :doctor :Arzt: GuestID
+Occupations :veterinarian :Tierarzt: GuestID
+Occupations :paramedic :Sanitäter: GuestID
+Occupations :farmer :Bauer: GuestID
+Occupations :hairstylist :Friseur: GuestID
+Occupations :waiter :Kellner: GuestID
+Question Words :how :wie: GuestID
+Question Words :what :was: GuestID
+Question Words :how come :wieso: GuestID
+Question Words :where to :wohin: GuestID
+Question Words :whom :wen: GuestID
+Question Words :why :warum: GuestID
+Question Words :where from :woher: GuestID
+Question Words :where :wo: GuestID
+Question Words :when :wann: GuestID
+Question Words :who :wer: GuestID
+Days of the Week :tonight :heute Abend: GuestID
+Days of the Week :week :Woche: GuestID
+Days of the Week :Monday :Montag: GuestID
+Days of the Week :night :Nacht: GuestID
+Days of the Week :weekend :Wochenende: GuestID
+Days of the Week :tomorrow :morgen: GuestID
+Days of the Week :weekly :wöchentlich: GuestID
+Days of the Week :Saturday :Samstag: GuestID
+Days of the Week :morning :Morgen: GuestID
+Days of the Week :afternoon :Nachmittag: GuestID
+Days of the Week :yesterday :gestern: GuestID
+Days of the Week :last night :gestern Abend: GuestID
+Days of the Week :Thursday :Donnerstag: GuestID
+Days of the Week :Friday :Freitag: GuestID
+Days of the Week :Sunday :Sonntag: GuestID
+Days of the Week :Wednesday :Mittwoch: GuestID
+Days of the Week :today :heute: GuestID
+Days of the Week :daily :täglich: GuestID
+Days of the Week :Tuesday :Dienstag: GuestID
+Days of the Week :evening :Abend: GuestID
+Days of the Week :day :Tag: GuestID
+Months of the Year :June :Juni: GuestID
+Months of the Year :May :Mai: GuestID
+Months of the Year :September :September: GuestID
+Months of the Year :Autumn :Herbst: GuestID
+Months of the Year :year :Jahr: GuestID
+Months of the Year :March :März: GuestID
+Months of the Year :Summer :Sommer: GuestID
+Months of the Year :Spring :Frühling: GuestID
+Months of the Year :April :April: GuestID
+Months of the Year :August :August: GuestID
+Months of the Year :October :Oktober: GuestID
+Months of the Year :December :Dezember: GuestID
+Months of the Year :month :Monat: GuestID
+Months of the Year :Winter :Winter: GuestID
+Months of the Year :monthly :monatlich: GuestID
+Months of the Year :July :Juli: GuestID
+Months of the Year :January :Januar: GuestID
+Months of the Year :February :Februar: GuestID
+Months of the Year :yearly :jährlich: GuestID
+Months of the Year :November :November: GuestID

@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/*This class contains a single list of vocabulary words along with all 
+  of it's identifying information (List name, List owner)
  */
 
 /**
@@ -19,10 +17,20 @@ import java.util.ArrayList ;
 import java.util.Collections;
 
 public class StudyList {
-    private String listName ;
+    private String listName ;   // Identifies the list in the dropdown box
+    
+    private String listCreatorID;  // Identifies Instructor who owns the list
+    
+    // Contains all <Key,Value> pairs -->  key = English word, value = German word
     private Map<String, String> wordListHashMap = new HashMap<String,String>() ; 
+   
+    /* Keys (English words) are stored in a List so they can be shuffled.  In hindsight,
+       it probably would have been best to store the key-value pair in a different 
+       container, since HashMaps cannot be shuffled.
+    */
+    
     Set wordKeySet  = wordListHashMap.keySet() ;
-    List wordKeys ;
+    List wordKeys ;   
     Iterator iterator ;
     
     public StudyList(String listName) 

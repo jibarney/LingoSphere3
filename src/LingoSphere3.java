@@ -38,6 +38,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
     private StudyList myLesson ;
     Map.Entry<String,String> currentPair ;
     int hitCount, missCount ;
+    private File localfile ;  // Store word lists
     
     public LingoSphere3() {
         initComponents();
@@ -78,14 +79,44 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jTabbedPane2.addTab("Teacher's Page",TeacherPages);
         jTabbedPane2.addTab("Translation", translation);
         
-        InputStream is = getClass().getResourceAsStream("resources/GermanWordList.txt");
+   /* Read in all lists from the local file "LocalListFile.txt".  If this file
+      does not exist, read in "GermanWordList.txt" which contains prebuilt lists
+      embedded in the jar file executable.  (Note that embedded resource files must
+      be accessed as a resource stream.)    Once the LocalListFile.txt is created, it can
+      be edited and overwritten with any local user updates.  The next time the program
+      is run, it will read from that file if it is available in the run directory. 
+   */
         
-        myWordLists = LS_FileIOUtility.readVocabFile(is);
+        InputStream default_is = getClass().getResourceAsStream("resources/GermanWordList.txt");
+        localfile =new File("LocalListFile.txt");
+       
+        //if file doesnt exists, then create it
+        try{ 
+              if(!localfile.exists()) 
+              {
+                  System.out.println("Reading embedded file");
+                  localfile.createNewFile();
+                  myWordLists = LS_FileIOUtility.readVocabFile(default_is);
+                  LS_FileIOUtility.writeUpdatedListFile(localfile,myWordLists) ;
+              }
+              else
+              {
+                   System.out.println("Reading local file");
+                   InputStream lfile_is = new FileInputStream(localfile);
+                   myWordLists = LS_FileIOUtility.readVocabFile(lfile_is);
+              }
+                  
+              
+        }
+        catch (IOException e){}
+        
+    // Loop through all the lists and get their names to add to the combo box 
+    // selector.
+        
         for (StudyList thisList: myWordLists) 
         {
             reviewListComboBox.addItem( thisList.getListName());
-        }
-        
+        }    
     }
 
     /**
@@ -965,8 +996,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                myLesson.initiateList();
                initializeStudentReview() ;
                startReviewButton.setEnabled(false) ;
-               
-               
+               reviewListComboBox.setEnabled(false);
            }
         } 
     }//GEN-LAST:event_startReviewButtonActionPerformed
@@ -1018,6 +1048,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 finalScore.setText(pct+"%");  
                 inputTranslation.setEnabled(false);
                 startReviewButton.setEnabled(true) ;
+                reviewListComboBox.setEnabled(true);
             }
             else
             {
