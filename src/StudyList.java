@@ -86,6 +86,7 @@ public class StudyList {
             return null ;
     }
    
+    @Override
     public String toString()
     {
         String contents = listName+'\n';
@@ -95,5 +96,6 @@ public class StudyList {
         }      
         return contents;
     }
+    
     
 }

@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /*
@@ -96,11 +99,17 @@ public class DbResources {
         return null;
     }
     
-    public UserData createUser(String userName, String userPass, Boolean isTeacher) throws SQLException {
+    public UserData createUser(String userName, String userPass, Boolean isTeacher, int teacherId) throws SQLException {
         
         UserData user = new UserData();
-        String query = "insert into LSDatabase.userData (userName, userPassword,isTeacher)"
+         String query = "insert into LSDatabase.userData (userName, userPassword,isTeacher)"
                        + " value(?, ?, ?)";
+        
+        if(teacherId > 0){
+            query = "insert into LSDatabase.userData (userName, userPassword,isTeacher, teachersId)"
+                       + " value(?, ?, ?, ?)";
+        }
+       
         //Statement st = null;
         PreparedStatement ps = null;
         try{
@@ -115,6 +124,10 @@ public class DbResources {
                 ps.setInt(3, 0);
             }
             
+            if(teacherId > 0){
+                ps.setInt(4, teacherId);
+                user.setTeacherId(teacherId);
+            }
             ps.executeUpdate();
             
             user.setUserName(userName);
@@ -136,5 +149,77 @@ public class DbResources {
         }
     }
     
+    public List<ClassData> getClasses() throws SQLException {
     
+        String query = "select idclassData, className"
+                       + " from LSDatabase.classData";
+        
+        Statement st = null;
+        try{
+            
+            st = conn.createStatement();
+            
+            //st = conn.createStatement();
+            //ps.setString(1, userName);
+            
+            ResultSet rs = st.executeQuery(query);
+            List<ClassData> classes = new ArrayList<ClassData>();
+            
+                while(rs.next()){
+                    ClassData newClass = new ClassData();
+                    newClass.setClassId(rs.getInt("idclassData"));
+                    newClass.setClassName(rs.getString("className"));
+                
+                    classes.add(newClass);
+                }
+                
+                return classes;
+        }
+        catch(SQLException e){
+            
+            System.out.println("SQL getClass error: " + e);
+        }
+        finally{
+            if(st != null)
+              st.close();
+        }
+        return null;
+    }
+    
+    public List<UserData> getTeachers() throws SQLException {
+    
+        String query = "select iduserData, userName"
+                       + " from LSDatabase.userData"
+                        + " where isTeacher = 1";
+        
+        Statement st = null;
+        try{
+            
+            st = conn.createStatement();
+            
+            //st = conn.createStatement();
+            //ps.setString(1, userName);
+            
+            ResultSet rs = st.executeQuery(query);
+            List<UserData> teachers = new ArrayList<UserData>();
+            
+                while(rs.next()){
+                    UserData newUser = new UserData();
+                    newUser.setUserName(rs.getString("userName"));
+                    newUser.setUserId(rs.getInt("iduserData"));
+                    teachers.add(newUser);
+                }
+                
+                return teachers;
+        }
+        catch(SQLException e){
+            
+            System.out.println("SQL getClass error: " + e);
+        }
+        finally{
+            if(st != null)
+              st.close();
+        }
+        return null;
+    }
 }

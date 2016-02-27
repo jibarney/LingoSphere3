@@ -14,7 +14,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
 
@@ -39,7 +41,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
     Map.Entry<String,String> currentPair ;
     int hitCount, missCount ;
     private File localfile ;  // Store word lists
-    UserData dbUser = null;
+    public UserData dbUser = null;
+    private TeacherTab tab;
     
     public LingoSphere3() {
         initComponents();
@@ -60,11 +63,24 @@ public class LingoSphere3 extends javax.swing.JFrame {
         newUserField.setColumns(14);
         newPsswdField.setColumns(14);
         existingUserButton.setSelected(true);
-        TeacherPage3 TeacherPages = new TeacherPage3() ;
+        //TeacherPage3 TeacherPages = new TeacherPage3() ;
         QuickTranslation translation = new QuickTranslation();
         
         // Need to debug executable.  Display error in message window.
         systemMessages.setText(db.getSQLSetupStatus());
+       try{
+           List<UserData> teacherList = db.getTeachers();
+            teacherSelect.addItem("Select Instructor");
+            
+            for(int c = 0; c < teacherList.size(); c++){
+                //String name = teacherList.get(c).getUserName();
+                teacherSelect.addItem(teacherList.get(c));
+            }
+            
+       }catch(SQLException e){
+           System.out.println(e);
+       }
+       teacherSelect.setEnabled(false);
         
        // Initially, current user area enabled, new user disabled.
         
@@ -77,8 +93,9 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jTabbedPane2.addTab("Lesson Plan");
         jTabbedPane.addTab("Self Test");
         jTabbedPane.addTab("Graded Test");*/
-        jTabbedPane2.addTab("Teacher's Page",TeacherPages);
+        //jTabbedPane2.addTab("Teacher's Page",TeacherPages);
         jTabbedPane2.addTab("Translation", translation);
+        jTabbedPane2.remove(jPanel3);
         
         enablePanel(jPanel9,false);
         logoutButton.setEnabled(false);
@@ -154,6 +171,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
         newPsswdField = new javax.swing.JTextField();
         classNum = new javax.swing.JComboBox();
         accountType = new javax.swing.JComboBox();
+        jLabel17 = new javax.swing.JLabel();
+        teacherSelect = new javax.swing.JComboBox();
         jPanel7 = new javax.swing.JPanel();
         existingUserButton = new javax.swing.JRadioButton();
         newUserButton = new javax.swing.JRadioButton();
@@ -329,6 +348,11 @@ public class LingoSphere3 extends javax.swing.JFrame {
             }
         });
 
+        jLabel17.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("Instructor");
+        jLabel17.setToolTipText("");
+
         javax.swing.GroupLayout newUserPanelLayout = new javax.swing.GroupLayout(newUserPanel);
         newUserPanel.setLayout(newUserPanelLayout);
         newUserPanelLayout.setHorizontalGroup(
@@ -357,7 +381,12 @@ public class LingoSphere3 extends javax.swing.JFrame {
                             .addComponent(jLabel8)))
                     .addGroup(newUserPanelLayout.createSequentialGroup()
                         .addGap(143, 143, 143)
-                        .addComponent(jLabel7)))
+                        .addComponent(jLabel7))
+                    .addGroup(newUserPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(teacherSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -368,9 +397,9 @@ public class LingoSphere3 extends javax.swing.JFrame {
             .addGroup(newUserPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(newUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(newUserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -386,6 +415,10 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 .addGroup(newUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(accountType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(newUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(teacherSelect))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -449,7 +482,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -541,11 +574,11 @@ public class LingoSphere3 extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 28, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(currentUserPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -630,7 +663,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -655,7 +688,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(reviewListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(startReviewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(startReviewButton, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addGap(25, 25, 25))
         );
 
@@ -697,9 +730,9 @@ public class LingoSphere3 extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(germanWordField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(studentTranslation, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 19, Short.MAX_VALUE)
                 .addComponent(correctAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -923,7 +956,11 @@ public class LingoSphere3 extends javax.swing.JFrame {
     }//GEN-LAST:event_existingUserButtonActionPerformed
 
     private void accountTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountTypeActionPerformed
-        // TODO add your handling code here:
+        if(String.valueOf(accountType.getSelectedItem()).equalsIgnoreCase("Student")){
+            teacherSelect.setEnabled(true);
+        }else{
+            teacherSelect.setEnabled(false);
+        }
     }//GEN-LAST:event_accountTypeActionPerformed
 
     private void newPsswdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPsswdFieldActionPerformed
@@ -1023,9 +1060,14 @@ public class LingoSphere3 extends javax.swing.JFrame {
             String newUsername = newUserField.getText() ;
             String newPsswd = newPsswdField.getText() ;
             Boolean isTeacher = false;
-
-            if(String.valueOf(accountType.getSelectedItem()).equalsIgnoreCase("Instructor"))
-            isTeacher = true;
+            int teacherId = -1;
+            if(String.valueOf(accountType.getSelectedItem()).equalsIgnoreCase("Instructor")){
+                isTeacher = true;
+            }else{
+                UserData teacher = (UserData)teacherSelect.getSelectedItem();
+                teacherId = teacher.getUserId();
+            }
+            
 
             if ((newUsername.length() < 5) || (newPsswd.length() < 5))
             {
@@ -1039,7 +1081,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 enablePanel(newUserPanel,false);
 
                 try{
-                    dbUser = db.createUser(newUsername , newPsswd, isTeacher);
+                    dbUser = db.createUser(newUsername , newPsswd, isTeacher, teacherId);
                     systemMessages.setText(dbUser.welcomeUser());
                     loginButton.setEnabled(false);
                     logoutButton.setEnabled(true);
@@ -1062,6 +1104,13 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 }
                 if (dbUser != null)
                 {
+                    if(dbUser.isIsTeacher()){
+                        tab = new TeacherTab(dbUser);
+                        jTabbedPane2.addTab("Teacher Page", tab);
+                    }
+                    else{
+                        jTabbedPane2.add("Student Self Test", jPanel3);
+                    }
                     validLogin = true;
                     loginButton.setEnabled(false);
                     logoutButton.setEnabled(true);
@@ -1085,6 +1134,14 @@ public class LingoSphere3 extends javax.swing.JFrame {
         systemMessages.setText("Logging out user "+dbUser.getUserName()) ;
         logoutButton.setEnabled(false);
         loginButton.setEnabled(true);
+        
+        if(dbUser.isIsTeacher()){
+            jTabbedPane2.remove(tab);
+        }
+        else{
+            jTabbedPane2.remove(jPanel3);
+        }
+        
         enablePanel(currentUserPanel,true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
@@ -1258,6 +1315,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
@@ -1300,6 +1358,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
     private javax.swing.JButton startReviewButton;
     private javax.swing.JTextField studentTranslation;
     private javax.swing.JTextArea systemMessages;
+    private javax.swing.JComboBox teacherSelect;
     private javax.swing.JTextArea welcomeMsg;
     // End of variables declaration//GEN-END:variables
 }

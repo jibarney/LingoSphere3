@@ -15,6 +15,7 @@ public class UserData {
     private String userName;
     private String password;
     private boolean isTeacher;
+    private int teacherId;
     
     public UserData()
     {
@@ -52,6 +53,14 @@ public class UserData {
     public void setIsTeacher(boolean isTeacher) {
         this.isTeacher = isTeacher;
     }
+    
+    public int getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
+    }
   
     public String welcomeUser(){
         
@@ -60,4 +69,8 @@ public class UserData {
         return  "   Welcome user "+userName +"!\n"+
                 "   You have "+usertype+" access. " ;
 }
+    @Override
+    public String toString() {
+        return this.getUserName(); //To change body of generated methods, choose Tools | Templates.
+    }
 }
