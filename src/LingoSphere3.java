@@ -43,6 +43,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
     private File localfile ;  // Store word lists
     public UserData dbUser = null;
     private TeacherTab tab;
+    int idxWelcomeTab, idxStudentTab, idxTeacherTab, idxQuickXlateTab ;
     
     public LingoSphere3() {
         initComponents();
@@ -89,14 +90,28 @@ public class LingoSphere3 extends javax.swing.JFrame {
         for (int a = 0; a < comCU.length; a++) comCU[a].setEnabled(true);
         for (int a = 0; a < comNU.length; a++) comNU[a].setEnabled(false);
               
-      /*  jTabbedPane1.addTab("Welcome"); 
-        jTabbedPane2.addTab("Lesson Plan");
-        jTabbedPane.addTab("Self Test");
-        jTabbedPane.addTab("Graded Test");*/
-        //jTabbedPane2.addTab("Teacher's Page",TeacherPages);
-        jTabbedPane2.addTab("Translation", translation);
-        jTabbedPane2.remove(jPanel3);
+    
+       /* Since the translation tab is the only one active upon startup,
+        make sure it is adjacent to the Welcome tab (index=1).  It just 
+        looks better. */
         
+        jTabbedPane2.insertTab("Translation", null, translation, null, 1);
+        //jTabbedPane2.remove(jPanel3);
+        
+    /* Create tab functions for both teachers,students and guests. The quick translation
+        tab is the only one that will be active until a valid student or 
+        teacher id is entered.
+     */
+        
+         tab = new TeacherTab();
+         jTabbedPane2.addTab("Teacher Page", tab);
+         
+         idxStudentTab = jTabbedPane2.indexOfComponent(jPanel3);
+         idxTeacherTab = jTabbedPane2.indexOfComponent(tab);
+         
+         jTabbedPane2.setEnabledAt(idxStudentTab,false) ;
+         jTabbedPane2.setEnabledAt(idxTeacherTab, false);
+                    
         enablePanel(jPanel9,false);
         logoutButton.setEnabled(false);
         
@@ -1063,9 +1078,13 @@ public class LingoSphere3 extends javax.swing.JFrame {
             int teacherId = -1;
             if(String.valueOf(accountType.getSelectedItem()).equalsIgnoreCase("Instructor")){
                 isTeacher = true;
+                jTabbedPane2.setEnabledAt(idxStudentTab,false) ;
+                jTabbedPane2.setEnabledAt(idxTeacherTab, true);
             }else{
                 UserData teacher = (UserData)teacherSelect.getSelectedItem();
                 teacherId = teacher.getUserId();
+                jTabbedPane2.setEnabledAt(idxStudentTab,true) ;
+                jTabbedPane2.setEnabledAt(idxTeacherTab, false);
             }
             
 
@@ -1105,11 +1124,15 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 if (dbUser != null)
                 {
                     if(dbUser.isIsTeacher()){
-                        tab = new TeacherTab(dbUser);
-                        jTabbedPane2.addTab("Teacher Page", tab);
+                        jTabbedPane2.setEnabledAt(idxStudentTab,false) ;
+                        jTabbedPane2.setEnabledAt(idxTeacherTab, true);
+                       //JIB tab = new TeacherTab(dbUser);
+                       //JIB jTabbedPane2.addTab("Teacher Page", tab);
                     }
                     else{
-                        jTabbedPane2.add("Student Self Test", jPanel3);
+                      jTabbedPane2.setEnabledAt(idxStudentTab,true) ;
+                      jTabbedPane2.setEnabledAt(idxTeacherTab, false);  
+                      //JIB  jTabbedPane2.add("Student Self Test", jPanel3);
                     }
                     validLogin = true;
                     loginButton.setEnabled(false);
@@ -1134,13 +1157,15 @@ public class LingoSphere3 extends javax.swing.JFrame {
         systemMessages.setText("Logging out user "+dbUser.getUserName()) ;
         logoutButton.setEnabled(false);
         loginButton.setEnabled(true);
+        jTabbedPane2.setEnabledAt(idxStudentTab,false) ;
+         jTabbedPane2.setEnabledAt(idxTeacherTab, false);
         
-        if(dbUser.isIsTeacher()){
-            jTabbedPane2.remove(tab);
+       /* if(dbUser.isIsTeacher()){
+            jTabbedPane2.remove(tab);         
         }
         else{
             jTabbedPane2.remove(jPanel3);
-        }
+        }*/
         
         enablePanel(currentUserPanel,true);
     }//GEN-LAST:event_logoutButtonActionPerformed

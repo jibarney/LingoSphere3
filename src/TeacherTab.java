@@ -37,13 +37,15 @@ public class TeacherTab extends javax.swing.JPanel {
         this.usd = usd;
     }
     
-     public TeacherTab(){
+    // public TeacherTab(){
          
-     }
+     //}
+     
     /**
      * Creates new form TeacherTab
      */
-    public TeacherTab(UserData ud) {
+     
+   public TeacherTab() {
         initComponents();
         
         String[] data = new String[5];
@@ -68,6 +70,7 @@ public class TeacherTab extends javax.swing.JPanel {
         }
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
