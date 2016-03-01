@@ -35,7 +35,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                                      "Test #003               not taken\n";
     
     String userDataFilename = "userdata.txt" ;
-    private ArrayList<User> userList = new ArrayList<>();
+   // private ArrayList<User> userList = new ArrayList<>();
     ArrayList<StudyList> myWordLists ;
     private StudyList myLesson ;
     Map.Entry<String,String> currentPair ;
@@ -1081,8 +1081,8 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 jTabbedPane2.setEnabledAt(idxStudentTab,false) ;
                 jTabbedPane2.setEnabledAt(idxTeacherTab, true);
             }else{
-                UserData teacher = (UserData)teacherSelect.getSelectedItem();
-                teacherId = teacher.getUserId();
+                //UserData teacher = (UserData)teacherSelect.getSelectedItem();
+                //teacherId = teacher.getUserId();
                 jTabbedPane2.setEnabledAt(idxStudentTab,true) ;
                 jTabbedPane2.setEnabledAt(idxTeacherTab, false);
             }
@@ -1203,95 +1203,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                 new LingoSphere3().setVisible(true);
             }
         });
-    }
-    // Read in all user accounts
-     
-    ArrayList<User> getUsers(String userFile)
-    {
-        ArrayList<User> userList = new ArrayList<>() ;
-        FileInputStream fis = null ;
-        BufferedReader reader = null ;
-        File file =new File(userFile);
-        
-        if (!file.exists())return userList ;
-        
-        try{
-            fis = new FileInputStream(userFile) ;
-            reader = new BufferedReader(new InputStreamReader(fis));
-            
-    // For now, we're assuming the file is in the correct format so 
-    // there are no error checks.
-            
-         String line = " " ;
-         while (line != null)
-          {
-            line = reader.readLine() ;
-
-            if (line != null){ 
-                String username = line;
-                String psswd = reader.readLine();
-                String userType = reader.readLine() ;
-                String className = reader.readLine() ; 
-                
-                line = reader.readLine() ;  //placeholders 
-                line = reader.readLine() ;
-                line = reader.readLine() ;
-                line = reader.readLine() ;
-                line = reader.readLine() ;
-                line = reader.readLine() ;
-                
-                User UserToAdd = new User(username,psswd,userType, className);
-                userList.add(UserToAdd); 
-            }      
-            }
-        } 
-        catch (FileNotFoundException ex) {} 
-        catch (IOException ex){}
-        finally 
-        {
-          try {
-                reader.close();
-                fis.close();
-            } 
-          catch(IOException ex){}
-         };
-        return userList;
-    }
-    
-     User addUser(String userFile)
-    {
-        try{
-    		File file =new File(userFile);
-    		
-    		//if file doesnt exists, then create it
-    		if(!file.exists()){
-    			file.createNewFile();
-    		}
-    		
-    		//true = append file
-    		FileWriter fw = new FileWriter(file.getName(),true);
-    	        BufferedWriter writer = new BufferedWriter(fw);
-                writer.write(newUserField.getText()+" \n") ;
-    	        writer.write(newPsswdField.getText()+" \n");
-                writer.write(accountType.getSelectedItem().toString()+" \n");
-                writer.write(classNum.getSelectedItem().toString()+" \n");
-                writer.write("*\n");
-                writer.write("*\n");
-                writer.write("*\n");
-                writer.write("*\n");
-                writer.write("*\n");
-                writer.write("*\n");
-    	        writer.close();
-	        
-    	}catch(IOException e){
-    		e.printStackTrace();
-    	}
-        
-        return new User(newUserField.getText(),newPsswdField.getText(),
-                                accountType.getSelectedItem().toString(),
-                                classNum.getSelectedItem().toString());
-    }
-    
+    }  
     
  // Utility to disable/enable all components in a panel
     void enablePanel(JPanel panel, boolean enabled)
@@ -1316,7 +1228,7 @@ public class LingoSphere3 extends javax.swing.JFrame {
                missCountLabel.setText("0");
                finalScore.setText("---%");   
         
-    }
+    } 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea GradeList;
